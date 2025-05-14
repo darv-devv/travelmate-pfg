@@ -28,6 +28,23 @@
 
 ---
 
+
+Para ejecutar el proyecto: 
+
+1. Clonar el repositorio:
+git clone
+
+
+2. Instalar las dependencias:
+npm install
+
+3. Iniciar el proyecto en modo dev:
+npm run dev
+
+4. Abrir el navegador:
+http://localhost:5173
+
+
 ## Estructura del proyecto
 
 ```bash
