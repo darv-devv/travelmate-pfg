@@ -1,3 +1,60 @@
+
+# TravelMate
+
+**TravelMate** es una red social/prototipo de viajes desarrollada como parte de proyecto final de DAW. Permite a los usuarios registrarse, iniciar sesión, explorar destinos y planificar viajes.
+
+---
+
+## Tecnologías utilizadas
+
+- **React** con **TypeScript**
+- **Vite** como bundler
+- **TailwindCSS** (vía CDN) para los estilos
+- **React Router** para la navegación
+- **LocalStorage** para simular autenticación
+
+---
+
+## Funcionalidades principales
+
+- Registro y login de usuarios
+- Logout
+- Protección de rutas privadas
+- Redirección según el estado de autenticación
+- Estilo responsive
+- Página de bienvenida (landing) personalizada
+- Panel de usuario (Dashboard) tras login
+- Actualizando * * * *
+
+---
+
+## Estructura del proyecto
+
+```bash
+├── public/
+│   └── index.html
+├── src/
+│   ├── assets/              # Iconos e imágenes
+│   ├── components/          # Navbar, botones, etc.
+│   ├── features/
+│   │   └── auth/            # AuthContext y lógica de autenticación
+│   ├── pages/               # Home, Login, Register, Dashboard
+│   ├── router/              # AppRouter.tsx
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+└── README.md
+
+
+
+
+
+
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
