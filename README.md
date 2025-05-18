@@ -24,6 +24,7 @@
 - Estilo responsive
 - Página de bienvenida (landing) personalizada
 - Panel de usuario (Dashboard) tras login
+- Ventana de destinos con simulación (hasta implementación de API y lógica)
 - Actualizando * * * *
 
 ---
