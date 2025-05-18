@@ -49,22 +49,53 @@ http://localhost:5173
 ## Estructura del proyecto
 
 ```bash
+travelmate/
+│
 ├── public/
-│   └── index.html
+│   ├── vertical-shot-beautiful-eiffel-tower-captured-paris-france.jpg
+│   ├── high-angle-shot-city-buildings-new-york-manhattan.jpg
+│   ├── ...
+│
 ├── src/
-│   ├── assets/              # Iconos e imágenes
-│   ├── components/          # Navbar, botones, etc.
+│   ├── components/
+│   │   ├── LogoutButton.tsx
+│   │   ├── navbar.tsx
+│   │   └── PrivateRoute.tsx
+│   │
 │   ├── features/
-│   │   └── auth/            # AuthContext y lógica de autenticación
-│   ├── pages/               # Home, Login, Register, Dashboard
-│   ├── router/              # AppRouter.tsx
+│   │   └── auth/
+│   │       ├── AuthContext.tsx
+│   │       ├── LoginForm.tsx
+│   │       └── RegisterForm.tsx
+│   │
+│   ├── pages/
+│   │   ├── Dashboard.tsx
+│   │   ├── Destinations.tsx
+│   │   ├── Home.tsx
+│   │   ├── Login.tsx
+│   │   ├── Profile.tsx
+│   │   └── Register.tsx
+│   │
+│   ├── routes/
+│   │   └── AppRouter.tsx
+│   │
+│   ├── services/
+│   │   └── geoNamesApi.ts
+│   │
 │   ├── App.tsx
 │   ├── main.tsx
-│   └── index.css
+│   ├── index.css
+│   ├── App.css
+│   └── vite-env.d.ts
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.cjs
+├── tailwind.config.js (si existiera)
+├── tsconfig.json (si existiera)
 └── README.md
-
-
-
 
 
 
