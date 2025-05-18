@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../features/auth/AuthContext'; // Usamos el contexto de autenticación
 //RouteProps eliminado
 
 // Componente de ruta privada

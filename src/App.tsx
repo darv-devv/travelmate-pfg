@@ -6,7 +6,7 @@ import { AuthProvider } from './features/auth/AuthContext'; // Importamos el con
 const App: React.FC = () => {
   return (
     <AuthProvider>
-      <AppRouter />
+    <AppRouter />
     </AuthProvider>
   )
 };

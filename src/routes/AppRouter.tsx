@@ -1,45 +1,34 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
-import Register from '../pages/Registetr'; // Ruta corregida
-import { AuthProvider } from '../features/auth/AuthContext';
-import PrivateRoute from '../components/PrivateRoute';
-import Dashboard from '../pages/Dashboard';
+import Register from '../pages/Registetr';
 import Home from '../pages/Home';
+import Dashboard from '../pages/Dashboard';
+import Profile from '../pages/Profile';
+import Destinos from '../pages/Destinations';
 
 const AppRouter: React.FC = () => {
-  const { user } = useAuth();
-  const isAuthenticated = !!user; // Chequea si se ha autenticado
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Home />} />
-          {/*Aquí podriamos añadir mas rutas*//* por ejemplo una ruta de contacto o de ayuda*/}
+    
+      <Routes>
+        {/* Rutas públicas */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/"
-            element={
-              <PrivateRoute isAuthenticated={isAuthenticated}>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </AuthProvider>
+
+        {/* Rutas privadas directamente accesibles mientras se desrrolla el frontend, por problemas con validacion y token */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/destinations" element={<Destinos />} />
+      </Routes>
+    
   );
-}; 
+};
 
+
+//Se reusleve problema de error "Uncaught error: you cannot render a react-router-dom inside another <Router"
 export default AppRouter;
 
-function useAuth(): { user: any } {
-  // Mock implementation of useAuth
-  const user = JSON.parse(localStorage.getItem('user') || 'null');
-  return { user };
-}
+
+

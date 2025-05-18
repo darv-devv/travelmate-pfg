@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../features/auth/AuthContext';
+// Se elimina uso de AuthContext
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const { login } = useAuth();
   const navigate = useNavigate();
+
+  //const { login } = useAuth();
+  //const navigate = useNavigate();
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+    //Simulación de registro por problema con el token
+    navigate('/dashboard');
 
-    if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden');
-      return;
+    //if (password !== confirmPassword) {
+      //alert('Las contraseñas no coinciden');
+      //return;
     }
 
-    localStorage.setItem('user', email);
-    localStorage.setItem('password', password);
-    localStorage.setItem('name', name);
+    //localStorage.setItem('user', email);
+    //localStorage.setItem('password', password);
+    //localStorage.setItem('name', name);
 
-    login(email);
-    navigate('/dashboard');
-  };
+    //login(email);
+    //navigate('/dashboard');
+  //};
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-200 flex justify-center items-center px-4">
@@ -37,7 +39,7 @@ const Register: React.FC = () => {
             placeholder="Nombre completo"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+            //required
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <input
@@ -45,7 +47,7 @@ const Register: React.FC = () => {
             placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+            //required
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <input
@@ -53,16 +55,16 @@ const Register: React.FC = () => {
             placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            //required
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <input
-            type="password"
-            placeholder="Confirmar contraseña"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            //type="password"
+            //placeholder="Confirmar contraseña"
+            //value={confirmPassword}
+            //onChange={(e) => setConfirmPassword(e.target.value)}
+            //required
+            //className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
             type="submit"

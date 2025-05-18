@@ -9,35 +9,45 @@ const Navbar: React.FC = () => {
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold text-blue-700">
-          TravelMate
-        </Link>
+          <img src="/favicon-32x32.png" alt="Logo" className="w-10" />
 
-        <div className="space-x-4">
-          {!user ? (
+        <div className="space-x-4 flex items-center">
+          <Link
+            to="/"
+            className="text-orange-300 hover:text-orange-800 font-medium"
+          >
+            Inicio
+          </Link>
+          <Link
+            to="/explorar"
+            className="text-orange-300 hover:text-orange-800 font-medium"
+          >
+            Explorar
+          </Link>
+          {user ? (
             <>
               <Link
-                to="/login"
-                className="text-blue-600 hover:text-blue-800 font-medium"
+                to="/perfil"
+                className="text-orange-300 hover:text-orange-800 font-medium"
               >
-                Iniciar sesión
+                Perfil
               </Link>
-              <Link
-                to="/register"
-                className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition"
-              >
-                Registrarse
-              </Link>
+              <LogoutButton />
             </>
           ) : (
             <>
               <Link
-                to="/dashboard"
-                className="text-blue-600 hover:text-blue-800 font-medium"
+                to="/login"
+                className="text-orange-300 hover:text-orange-800 font-medium"
               >
-                Dashboard
+                Perfil
               </Link>
-              <LogoutButton />
+              <Link
+                to="/register"
+                className="bg-red-600 text-white px-4 py-1.5 rounded hover:bg-red-700 transition"
+              >
+                Cerrar sesión 
+              </Link>
             </>
           )}
         </div>
