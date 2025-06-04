@@ -1,0 +1,475 @@
+<travelmate class="svg"></travelmate>
+
+<svg viewBox="0 0 1200 1800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Estilos globales -->
+  <style>
+    .screen {
+      fill: #fafafa;
+      stroke: #e0e0e0;
+      stroke-width: 2;
+    }
+    .header {
+      fill: #ffffff;
+      stroke: #e0e0e0;
+      stroke-width: 1;
+    }
+    .panel {
+      fill: #ffffff;
+      stroke: #e0e0e0;
+      stroke-width: 1;
+      rx: 8;
+      ry: 8;
+    }
+    .button {
+      fill: #f1c40f;
+      rx: 20;
+      ry: 20;
+    }
+    .button-text {
+      fill: #2c3e50;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .button-outline {
+      fill: none;
+      stroke: #f1c40f;
+      stroke-width: 2;
+      rx: 20;
+      ry: 20;
+    }
+    .button-outline-text {
+      fill: #f1c40f;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .title {
+      font-family: 'Arial', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #2c3e50;
+    }
+    .subtitle {
+      font-family: 'Arial', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      fill: #2c3e50;
+    }
+    .text {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      fill: #5d6d7e;
+    }
+    .bold-text {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: #2c3e50;
+    }
+    .small-text {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      fill: #7f8c8d;
+    }
+    .input {
+      fill: #ffffff;
+      stroke: #e0e0e0;
+      stroke-width: 1.5;
+      rx: 20;
+      ry: 20;
+    }
+    .input-placeholder {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      fill: #95a5a6;
+      text-anchor: start;
+      dominant-baseline: central;
+    }
+    .highlight {
+      fill: #fff9c4;
+      rx: 20;
+      ry: 20;
+    }
+    .tag {
+      fill: #fff9c4;
+      rx: 12;
+      ry: 12;
+    }
+    .tag-text {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      fill: #2c3e50;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .accent {
+      fill: #f1c40f;
+    }
+    .screen-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      fill: #2c3e50;
+      text-anchor: middle;
+    }
+    .avatar {
+      fill: #bdc3c7;
+      stroke: #ffffff;
+      stroke-width: 2;
+    }
+    .active-tab {
+      stroke: #f1c40f;
+      stroke-width: 3;
+    }
+    .divider {
+      stroke: #ecf0f1;
+      stroke-width: 1;
+    }
+    .post-bg {
+      fill: #ffffff;
+      stroke: #ecf0f1;
+      stroke-width: 1;
+      rx: 10;
+      ry: 10;
+    }
+    .icon {
+      fill: #95a5a6;
+    }
+    .icon-active {
+      fill: #f1c40f;
+    }
+    .tab-bar {
+      fill: #ffffff;
+      stroke: #ecf0f1;
+      stroke-width: 1;
+    }
+    .destination-card {
+      fill: #ffffff;
+      stroke: #ecf0f1;
+      stroke-width: 1;
+      rx: 10;
+      ry: 10;
+    }
+    .badge {
+      fill: #f1c40f;
+      rx: 10;
+      ry: 10;
+    }
+    .badge-text {
+      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      fill: #ffffff;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .image-placeholder {
+      fill: #ecf0f1;
+      rx: 8;
+      ry: 8;
+    }
+    .profile-header {
+      fill: #f1c40f;
+    }
+  </style>
+
+  <!-- PANTALLA 1: FEED SOCIAL -->
+  <g transform="translate(0, 0)">
+    <!-- Marco de pantalla -->
+    <rect x="50" y="50" width="1100" height="500" class="screen" />
+    
+    <!-- Título de la pantalla -->
+    <text x="600" y="30" class="screen-label">PANTALLA 1: FEED SOCIAL DE VIAJES</text>
+    
+    <!-- Header -->
+    <rect x="50" y="50" width="1100" height="60" class="header" />
+    
+    <!-- Logo -->
+    <circle cx="85" cy="80" r="20" class="accent" />
+    <text x="120" y="87" class="title">TravelMate</text>
+    
+    <!-- Búsqueda -->
+    <rect x="240" y="65" width="240" height="30" class="input" />
+    <text x="270" y="80" class="input-placeholder">Buscar destinos, amigos...</text>
+    
+    <!-- Íconos derecha -->
+    <circle cx="980" cy="80" r="15" class="icon" opacity="0.8"/>
+    <text x="980" y="83" class="small-text" text-anchor="middle" fill="white">🔔</text>
+    <circle cx="1030" cy="80" r="15" class="icon" opacity="0.8"/>
+    <text x="1030" y="83" class="small-text" text-anchor="middle" fill="white">💬</text>
+    
+    <!-- Avatar usuario -->
+    <circle cx="1080" cy="80" r="22" class="avatar" />
+    <text x="1080" y="85" class="bold-text" text-anchor="middle">JG</text>
+    
+    <!-- Contenido principal -->
+    <rect x="80" y="130" width="700" height="400" class="post-bg" />
+    
+    <!-- Post social -->
+    <circle cx="120" cy="170" r="20" class="avatar" />
+    <text x="120" y="175" class="bold-text" text-anchor="middle">AM</text>
+    <text x="160" y="165" class="bold-text">Ana Martínez</text>
+    <text x="160" y="185" class="small-text">Compartió una experiencia en Roma • 2h</text>
+    
+    <!-- Contenido post -->
+    <rect x="120" y="200" width="620" height="180" class="image-placeholder" />
+    <text x="430" y="290" class="title" text-anchor="middle" fill="#ffffff">Vista desde la terraza del hotel</text>
+
+    <text x="120" y="400" class="text">"Mi experiencia en Roma ha sido increíble. Este hotel con vistas al Coliseo realmente merece la pena. ¡El desayuno en la terraza es una maravilla! #Roma #ItaliaConEncanto"</text>
+    
+    <!-- Interacciones -->
+    <rect x="120" y="430" width="40" height="20" class="highlight" />
+    <text x="140" y="442" class="bold-text" text-anchor="middle">❤️ 84</text>
+    
+    <rect x="170" y="430" width="55" height="20" class="highlight" />
+    <text x="195" y="442" class="bold-text" text-anchor="middle">💬 16</text>
+    
+    <rect x="235" y="430" width="60" height="20" class="highlight" />
+    <text x="265" y="442" class="bold-text" text-anchor="middle">🔄 8</text>
+    
+    <rect x="590" y="430" width="150" height="30" class="button" />
+    <text x="665" y="445" class="button-text">Ver experiencia</text>
+    
+    <!-- Panel lateral -->
+    <rect x="800" y="130" width="320" height="400" class="panel" />
+    
+    <text x="830" y="160" class="subtitle">Descubre más</text>
+    
+    <!-- Sugerencias de destinos -->
+    <circle cx="840" cy="200" r="25" class="avatar" />
+    <text x="840" y="205" class="bold-text" text-anchor="middle">🏝️</text>
+    <text x="880" y="190" class="bold-text">Ibiza está en tendencia</text>
+    <text x="880" y="210" class="small-text">32 amigos planean ir este verano</text>
+    
+    <circle cx="840" cy="260" r="25" class="avatar" />
+    <text x="840" y="265" class="bold-text" text-anchor="middle">🗼</text>
+    <text x="880" y="250" class="bold-text">París para principiantes</text>
+    <text x="880" y="270" class="small-text">Guía creada por la comunidad</text>
+    
+    <circle cx="840" cy="320" r="25" class="avatar" />
+    <text x="840" y="325" class="bold-text" text-anchor="middle">🏙️</text>
+    <text x="880" y="310" class="bold-text">Nueva York en otoño</text>
+    <text x="880" y="330" class="small-text">15 experiencias destacadas</text>
+    
+    <rect x="830" y="360" width="260" height="40" class="button" />
+    <text x="960" y="380" class="button-text">Crear nueva experiencia</text>
+    
+    <rect x="830" y="410" width="260" height="40" class="button-outline" />
+    <text x="960" y="430" class="button-outline-text">Planificar viaje</text>
+    
+    <!-- Barra de navegación inferior -->
+    <rect x="50" y="510" width="1100" height="40" class="tab-bar" />
+    <rect x="50" y="510" width="275" height="40" class="highlight" />
+    
+    <text x="185" y="530" class="bold-text" text-anchor="middle">Home</text>
+    <text x="460" y="530" class="text" text-anchor="middle">Explorar</text>
+    <text x="735" y="530" class="text" text-anchor="middle">Mis Viajes</text>
+    <text x="1010" y="530" class="text" text-anchor="middle">Perfil</text>
+  </g>
+
+  <!-- PANTALLA 2: EXPLORAR DESTINOS -->
+  <g transform="translate(0, 600)">
+    <!-- Marco de pantalla -->
+    <rect x="50" y="50" width="1100" height="500" class="screen" />
+    
+    <!-- Título de la pantalla -->
+    <text x="600" y="30" class="screen-label">PANTALLA 2: EXPLORAR DESTINOS Y EXPERIENCIAS</text>
+    
+    <!-- Header -->
+    <rect x="50" y="50" width="1100" height="60" class="header" />
+    
+    <!-- Logo -->
+    <circle cx="85" cy="80" r="20" class="accent" />
+    <text x="120" y="87" class="title">TravelMate</text>
+    
+    <!-- Búsqueda principal -->
+    <rect x="240" y="65" width="240" height="30" class="input" />
+    <text x="270" y="80" class="input-placeholder">Buscar destinos, amigos...</text>
+    
+    <!-- Íconos derecha -->
+    <circle cx="980" cy="80" r="15" class="icon" opacity="0.8"/>
+    <text x="980" y="83" class="small-text" text-anchor="middle" fill="white">🔔</text>
+    <circle cx="1030" cy="80" r="15" class="icon" opacity="0.8"/>
+    <text x="1030" y="83" class="small-text" text-anchor="middle" fill="white">💬</text>
+    
+    <!-- Avatar usuario -->
+    <circle cx="1080" cy="80" r="22" class="avatar" />
+    <text x="1080" y="85" class="bold-text" text-anchor="middle">JG</text>
+    
+    <!-- Filtros de categoría -->
+    <rect x="80" y="130" width="90" height="40" class="highlight" />
+    <text x="125" y="150" class="bold-text" text-anchor="middle">Tendencias</text>
+    
+    <rect x="180" y="130" width="110" height="40" class="input" />
+    <text x="235" y="150" class="text" text-anchor="middle">Experiencias</text>
+    
+    <rect x="300" y="130" width="90" height="40" class="input" />
+    <text x="345" y="150" class="text" text-anchor="middle">Playas</text>
+    
+    <rect x="400" y="130" width="90" height="40" class="input" />
+    <text x="445" y="150" class="text" text-anchor="middle">Montaña</text>
+    
+    <rect x="500" y="130" width="110" height="40" class="input" />
+    <text x="555" y="150" class="text" text-anchor="middle">Ciudad</text>
+    
+    <rect x="620" y="130" width="90" height="40" class="input" />
+    <text x="665" y="150" class="text" text-anchor="middle">Cultura</text>
+    
+    <rect x="720" y="130" width="120" height="40" class="input" />
+    <text x="780" y="150" class="text" text-anchor="middle">Gastronomía</text>
+    
+    <!-- Contenido principal -->
+    <text x="85" y="200" class="subtitle">Destinos destacados por la comunidad</text>
+    
+    <!-- Destinos en cuadrícula -->
+    <rect x="80" y="220" width="250" height="160" class="destination-card" />
+    <rect x="80" y="220" width="250" height="100" class="image-placeholder" />
+    <text x="100" y="340" class="bold-text">Barcelona, España</text>
+    <text x="100" y="360" class="small-text">827 experiencias compartidas</text>
+    <rect x="260" y="230" width="60" height="25" class="badge" />
+    <text x="290" y="243" class="badge-text">TOP</text>
+    
+    <rect x="350" y="220" width="250" height="160" class="destination-card" />
+    <rect x="350" y="220" width="250" height="100" class="image-placeholder" />
+    <text x="370" y="340" class="bold-text">Santorini, Grecia</text>
+    <text x="370" y="360" class="small-text">654 experiencias compartidas</text>
+    <rect x="530" y="230" width="60" height="25" class="badge" />
+    <text x="560" y="243" class="badge-text">NUEVO</text>
+    
+    <rect x="620" y="220" width="250" height="160" class="destination-card" />
+    <rect x="620" y="220" width="250" height="100" class="image-placeholder" />
+    <text x="640" y="340" class="bold-text">Kioto, Japón</text>
+    <text x="640" y="360" class="small-text">423 experiencias compartidas</text>
+    
+    <rect x="890" y="220" width="250" height="160" class="destination-card" />
+    <rect x="890" y="220" width="250" height="100" class="image-placeholder" />
+    <text x="910" y="340" class="bold-text">Marrakech, Marruecos</text>
+    <text x="910" y="360" class="small-text">319 experiencias compartidas</text>
+    
+    <text x="85" y="410" class="subtitle">Experiencias populares esta semana</text>
+    
+    <!-- Tarjetas de experiencias -->
+    <rect x="80" y="430" width="350" height="100" class="destination-card" />
+    <rect x="80" y="430" width="100" height="100" class="image-placeholder" />
+    <text x="190" y="455" class="bold-text">Ruta de tapas en Madrid</text>
+    <text x="190" y="475" class="small-text">por Carlos G. y 18 más</text>
+    <text x="190" y="505" class="small-text">★★★★★ (128)</text>
+    
+    <rect x="450" y="430" width="350" height="100" class="destination-card" />
+    <rect x="450" y="430" width="100" height="100" class="image-placeholder" />
+    <text x="560" y="455" class="bold-text">Tour fotográfico en Praga</text>
+    <text x="560" y="475" class="small-text">por Elena T. y 9 más</text>
+    <text x="560" y="505" class="small-text">★★★★☆ (94)</text>
+    
+    <rect x="820" y="430" width="350" height="100" class="destination-card" />
+    <rect x="820" y="430" width="100" height="100" class="image-placeholder" />
+    <text x="930" y="455" class="bold-text">Senderismo en los Alpes</text>
+    <text x="930" y="475" class="small-text">por Miguel A. y 23 más</text>
+    <text x="930" y="505" class="small-text">★★★★★ (202)</text>
+    
+    <!-- Barra de navegación inferior -->
+    <rect x="50" y="510" width="1100" height="40" class="tab-bar" />
+    <rect x="325" y="510" width="275" height="40" class="highlight" />
+    
+    <text x="185" y="530" class="text" text-anchor="middle">Home</text>
+    <text x="460" y="530" class="bold-text" text-anchor="middle">Explorar</text>
+    <text x="735" y="530" class="text" text-anchor="middle">Mis Viajes</text>
+    <text x="1010" y="530" class="text" text-anchor="middle">Perfil</text>
+  </g>
+
+  <!-- PANTALLA 3: PERFIL DE USUARIO -->
+  <g transform="translate(0, 1200)">
+    <!-- Marco de pantalla -->
+    <rect x="50" y="50" width="1100" height="500" class="screen" />
+    
+    <!-- Título de la pantalla -->
+    <text x="600" y="30" class="screen-label">PANTALLA 3: PERFIL DE USUARIO Y PLANIFICACIÓN</text>
+    
+    <!-- Header -->
+    <rect x="50" y="50" width="1100" height="60" class="header" />
+    
+    <!-- Logo -->
+    <circle cx="85" cy="80" r="20" class="accent" />
+    <text x="120" y="87" class="title">TravelMate</text>
+    
+    <!-- Búsqueda principal -->
+    <rect x="240" y="65" width="240" height="30" class="input" />
+    <text x="270" y="80" class="input-placeholder">Buscar destinos, amigos...</text>
+    
+    <!-- Íconos derecha -->
+    <circle cx="980" cy="80" r="15" class="icon" opacity="0.8"/>
+    <text x="980" y="83" class="small-text" text-anchor="middle" fill="white">🔔</text>
+    <circle cx="1030" cy="80" r="15" class="icon" opacity="0.8"/>
+    <text x="1030" y="83" class="small-text" text-anchor="middle" fill="white">💬</text>
+    
+    <!-- Avatar usuario -->
+    <circle cx="1080" cy="80" r="22" class="avatar" />
+    <text x="1080" y="85" class="bold-text" text-anchor="middle">JG</text>
+    
+    <!-- Perfil header -->
+    <rect x="80" y="130" width="1040" height="120" rx="10" ry="10" class="profile-header" />
+    <circle cx="150" cy="190" r="50" class="avatar" />
+    <text x="150" y="195" class="title" text-anchor="middle">JG</text>
+    
+    <text x="240" y="175" class="title" fill="#ffffff">Juan García</text>
+    <text x="240" y="200" class="bold-text" fill="#ffffff">Viajero aventurero • Barcelona, España</text>
+    <text x="240" y="225" class="text" fill="#ffffff">27 viajes • 156 experiencias • 483 seguidores</text>
+    
+    <rect x="900" y="160" width="200" height="40" class="button-outline" />
+    <text x="1000" y="180" class="button-outline-text">Editar perfil</text>
+    
+    <!-- Pestañas -->
+    <rect x="80" y="270" width="180" height="40" class="highlight" />
+    <text x="170" y="290" class="bold-text" text-anchor="middle">Próximos viajes</text>
+    
+    <text x="300" y="290" class="text" text-anchor="middle">Mis experiencias</text>
+    <text x="450" y="290" class="text" text-anchor="middle">Mis fotos</text>
+    <text x="600" y="290" class="text" text-anchor="middle">Favoritos</text>
+    <text x="750" y="290" class="text" text-anchor="middle">Recomendaciones</text>
+    
+    <!-- Contenido principal -->
+    <rect x="80" y="330" width="700" height="200" class="destination-card" />
+    <rect x="80" y="330" width="200" height="200" class="image-placeholder" />
+    
+    <text x="320" y="360" class="subtitle">Viaje a Tokio</text>
+    <text x="320" y="390" class="bold-text">15 - 28 de junio, 2025</text>
+    
+    <text x="320" y="420" class="text">• Vuelos confirmados</text>
+    <text x="320" y="445" class="text">• Hotel Imperial Tokyo (5 noches)</text>
+    <text x="320" y="470" class="text">• Ryokan tradicional en Kioto (3 noches)</text>
+    <text x="320" y="495" class="text">• 4 experiencias planeadas</text>
+    
+    <rect x="580" y="470" width="180" height="40" class="button" />
+    <text x="670" y="490" class="button-text">Ver detalles</text>
+    
+    <!-- Panel lateral -->
+    <rect x="800" y="330" width="320" height="200" class="panel" />
+    <text x="830" y="360" class="subtitle">Sugerencias para ti</text>
+    
+    <rect x="830" y="380" width="260" height="50" class="input" rx="10" ry="10" />
+    <circle cx="855" cy="405" r="15" class="accent" />
+    <text x="855" y="407" class="small-text" text-anchor="middle" fill="white">🎎</text>
+    <text x="880" y="397" class="bold-text">Tour de 3 días en Kioto</text>
+    <text x="880" y="417" class="small-text">Sugerido para tu viaje a Japón</text>
+    
+    <rect x="830" y="440" width="260" height="50" class="input" rx="10" ry="10" />
+    <circle cx="855" cy="465" r="15" class="accent" />
+    <text x="855" y="467" class="small-text" text-anchor="middle" fill="white">🍣</text>
+    <text x="880" y="457" class="bold-text">Clase de sushi en Tokio</text>
+    <text x="880" y="477" class="small-text">5 amigos han participado</text>
+    
+    <!-- Barra de navegación inferior -->
+    <rect x="50" y="510" width="1100" height="40" class="tab-bar" />
+    <rect x="875" y="510" width="275" height="40" class="highlight" />
+    
+    <text x="185" y="530" class="text" text-anchor="middle">Home</text>
+    <text x="460" y="530" class="text" text-anchor="middle">Explorar</text>
+    <text x="735" y="530" class="text" text-anchor="middle">Mis Viajes</text>
+    <text x="1010" y="530" class="bold-text" text-anchor="middle">Perfil</text>
+  </g>
+</svg>
