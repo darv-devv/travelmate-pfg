@@ -1,0 +1,67 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  avatar    String?
+  bio       String?
+  location  String?
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  trips Trip[]
+
+  @@map("users")
+}
+
+model Destination {
+  id          String  @id @default(cuid())
+  name        String
+  country     String
+  description String?
+  imageUrl    String?
+  latitude    Float?
+  longitude   Float?
+  category    String  @default("city")
+  createdAt   DateTime @default(now())
+
+  // Relaciones
+  trips Trip[]
+
+  @@map("destinations")
+}
+
+model Trip {
+  id            String     @id @default(cuid())
+  title         String
+  description   String?
+  startDate     DateTime
+  endDate       DateTime
+  status        String     @default("PLANNED")
+  budget        Float?
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  // Foreign Keys
+  userId        String
+  destinationId String
+
+  // Relaciones
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  destination   Destination @relation(fields: [destinationId], references: [id])
+
+  @@map("trips")
+}
