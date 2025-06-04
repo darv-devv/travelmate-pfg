@@ -1,128 +1,206 @@
 
 # TravelMate
 
-**TravelMate** es una red social/prototipo de viajes desarrollada como parte de proyecto final de DAW. Permite a los usuarios registrarse, iniciar sesión, explorar destinos y planificar viajes.
+# TravelMate - Red Social de Viajes
 
----
+> Proyecto Final de Grado - Desarrollo de Aplicaciones Web (DAW)
 
-## Tecnologías utilizadas
+**TravelMate** es una red social/prototipo de viajes que permite a los usuarios registrarse, iniciar sesión, explorar destinos y planificar viajes. 
 
-- **React** con **TypeScript**
-- **Vite** como bundler
-- **TailwindCSS** (vía CDN) para los estilos
-- **React Router** para la navegación
-- **LocalStorage** para simular autenticación
+## 📋 Descripción del Proyecto
 
----
+TravelMate es una plataforma social diseñada para viajeros que buscan conectar, compartir experiencias y descubrir nuevos destinos. La aplicación busca proporcionar un entorno seguro y funcional para la gestión de usuarios y contenido relacionado con viajes.
 
-## Funcionalidades principales
+## 🚀 Características Principales
 
-- Registro y login de usuarios
-- Logout
-- Protección de rutas privadas
-- Redirección según el estado de autenticación
-- Estilo responsive
-- Página de bienvenida (landing) personalizada
-- Panel de usuario (Dashboard) tras login
-- Actualizando * * * *
+- **Sistema de Autenticación Completo**: Registro y login de usuarios con JWT
+- **Interfaz Responsive**: Diseño adaptable a diferentes dispositivos
+- **Navegación SPA**: Experiencia de usuario fluida sin recargas de página
+- **API RESTful**: Backend con endpoints bien definidos
+- **Base de Datos**: Gestión eficiente de datos con Prisma ORM
+- **Seguridad**: Protección de rutas y middleware de autenticación
 
----
+## 🛠️ Stack Tech
 
+### Frontend
+- **React 19** - Biblioteca de interfaz de usuario
+- **TypeScript** - Tipado estático para JavaScript
+- **Vite** - Bundler y servidor de desarrollo
+- **React Router v7** - Enrutamiento para SPA
+- **TailwindCSS** - Framework de estilos utilitarios
+- **Axios** - Cliente HTTP para comunicación con API
 
-Para ejecutar el proyecto: 
+### Backend
+- **Node.js** - Entorno de ejecución de JavaScript
+- **Express.js** - Framework web para Node.js
+- **TypeScript** - Desarrollo tipado en el backend
+- **Prisma ORM** - Gestor de base de datos
+- **SQLite** - Base de datos para desarrollo
+- **JWT** - Autenticación basada en tokens
+- **bcryptjs** - Encriptación de contraseñas
+- **CORS** - Configuración de intercambio de recursos
 
-1. Clonar el repositorio:
-git clone
+## 🏗️ Arquitectura del Sistema
 
+```
+TravelMate/
+├── backend/                 # API REST Node.js + Express
+│   ├── src/
+│   │   ├── controllers/     # Lógica de negocio
+│   │   ├── middleware/      # Middleware personalizado
+│   │   ├── routes/          # Definición de rutas
+│   │   ├── scripts/         # Scripts de utilidad
+│   │   └── server.ts        # Punto de entrada del servidor
+│   ├── prisma/              # Configuración de base de datos
+│   └── package.json
+│
+├── frontend/                # Aplicación React alternativa
+│   └── src/
+│
+├── src/                     # Aplicación React principal
+│   ├── components/          # Componentes reutilizables
+│   ├── features/           # Características principales (auth)
+│   ├── pages/              # Páginas de la aplicación
+│   ├── routes/             # Configuración de rutas
+│   ├── services/           # Servicios de API
+│   └── App.tsx             # Componente principal
+│
+└── public/                  # Archivos estáticos
+```
 
-2. Instalar las dependencias:
+## 📡 API Endpoints
+
+### Autenticación
+- `POST /api/auth/register` - Registro de nuevos usuarios
+- `POST /api/auth/login` - Inicio de sesión de usuarios
+
+### Salud del Sistema
+- `GET /api/health` - Verificación del estado del servidor
+
+## 🚀 Instalación y Configuración
+
+### Prerrequisitos
+- Node.js (v18 o superior)
+- npm o yarn
+- Git
+
+### 1. Clonar el Repositorio
+```bash
+git clone https://github.com/darv-devv/travelmate-pfg.git
+cd travelmate-pfg
+```
+
+### 2. Configuración del Backend
+```bash
+# Navegar al directorio del backend
+cd backend
+
+# Instalar dependencias
 npm install
 
-3. Iniciar el proyecto en modo dev:
+# Configurar la base de datos (Prisma)
+npx prisma generate
+npx prisma db push
+
+# Iniciar el servidor de desarrollo
 npm run dev
+```
 
-4. Abrir el navegador:
-http://localhost:5173
+El backend estará disponible en: `http://localhost:5000`
 
-
-## Estructura del proyecto
-
+### 3. Configuración del Frontend
 ```bash
-├── public/
-│   └── index.html
-├── src/
-│   ├── assets/              # Iconos e imágenes
-│   ├── components/          # Navbar, botones, etc.
-│   ├── features/
-│   │   └── auth/            # AuthContext y lógica de autenticación
-│   ├── pages/               # Home, Login, Register, Dashboard
-│   ├── router/              # AppRouter.tsx
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-└── README.md
+# En una nueva terminal, desde la raíz del proyecto
+# Instalar dependencias
+npm install
 
-
-
-
-
-
-
-
-
-
-
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Iniciar el servidor de desarrollo
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El frontend estará disponible en: `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 4. Verificación de la Instalación
+1. Abrir `http://localhost:5173` en el navegador
+2. Verificar que la aplicación carga correctamente
+3. Probar el registro y login de usuarios
+4. Confirmar la comunicación frontend-backend
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🔧 Scripts Disponibles
+
+### Backend
+```bash
+npm run dev      # Servidor de desarrollo con recarga automática
+npm start        # Servidor de producción
 ```
+
+### Frontend
+```bash
+npm run dev      # Servidor de desarrollo Vite
+npm run build    # Construcción para producción
+npm run preview  # Vista previa de la build
+npm run lint     # Análisis de código con ESLint
+```
+
+## 🌐 Configuración de Puertos
+
+- **Frontend**: Puerto 5173 (Vite dev server)
+- **Backend**: Puerto 5000 (Express server)
+- **Base de Datos**: SQLite local (dev.db)
+
+## 📱 Funcionalidades Implementadas
+
+### Sistema de Autenticación
+- Registro de usuarios con validación
+- Inicio de sesión seguro
+- Protección de rutas privadas
+- Gestión de sesiones con JWT
+- Logout funcional
+
+### Interfaz de Usuario
+- Landing page atractiva
+- Dashboard personalizado post-login
+- Navegación intuitiva
+- Diseño responsive
+- Feedback visual de estados
+
+### Backend API
+- Endpoints RESTful bien estructurados
+- Middleware de autenticación
+- Validación de datos
+- Manejo de errores
+- Configuración CORS
+
+## 🔒 Seguridad
+
+- Encriptación de contraseñas con bcrypt
+- Autenticación basada en JWT
+- Validación de tokens en rutas protegidas
+- Configuración CORS apropiada
+- Sanitización de datos de entrada
+
+## 📈 Estado del Proyecto
+
+Este proyecto está en desarrollo activo como parte del Trabajo de Fin de Grado en Desarrollo de Aplicaciones Web. Incluye todas las funcionalidades base para una red social de viajes y está preparado para futuras expansiones.
+
+## 📋 Próximas Funcionalidades
+
+- Sistema de posts y contenido de viajes
+- Perfil de usuario completo
+- Sistema de seguimiento entre usuarios
+- Búsqueda y filtrado de destinos
+- Integración con APIs de mapas
+- Sistema de reviews y calificaciones
+
+## 👨‍💻 Autor
+
+**Adrian Rodriguez Velaz** - 
+- GitHub: [@darv-devv](https://github.com/darv-devv)
+
+## 📄 Licencia
+
+Este proyecto constituye el trabajo de fin de grado de DAW.
+
+---
+
+**Nota**: Este proyecto forma parte del Proyecto Final de Grado en Desarrollo de Aplicaciones Web. La arquitectura y tecnologías seleccionadas reflejan las mejores prácticas actuales en desarrollo fullstack con JavaScript/TypeScript.
