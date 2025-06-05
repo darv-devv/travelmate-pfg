@@ -1,34 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../features/auth/AuthContext'; // Añadir esta línea
 import { Footer } from '../components/Footer';
-//Se elimina useAuth
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //Se elimina useAuth
+  const { login } = useAuth(); // Añadir esta línea
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => { // Hacer async
     e.preventDefault();
-    //Simulación de login por problema con el token
-    navigate('/dashboard');
-
- 
- 
- 
-    //localStorage.setItem('user', email); //Se soluciona problema que provica error en localStorage 
-    //localStorage.setItem('password', password); 
-
-    //const storedEmail = localStorage.getItem('user'); 
-    //const storedPassword = localStorage.getItem('password'); 
-
-    //if (email === storedEmail && password === storedPassword) {
-      //login(email);
-      //navigate('/dashboard');
-    //} else {
-      //alert('Correo o contraseña incorrectos');
-    //}
+    
+    // Usar API real en lugar de simulación
+    const success = await login(email, password);
+    
+    if (success) {
+      navigate('/dashboard');
+    } else {
+      alert('Correo o contraseña incorrectos');
+    }
   };
 
   return (
@@ -70,5 +61,3 @@ const Login: React.FC = () => {
   
   );
 };
-
-export default Login;
