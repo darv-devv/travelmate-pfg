@@ -128,47 +128,49 @@ El frontend estará disponible en: `http://localhost:5173`
 
 ## 🔧 Scripts Disponibles
 
+
+
+
 ### Backend
 ```bash
-npm run dev      # Servidor de desarrollo con recarga automática
-npm start        # Servidor de producción
+# Desarrollo
+npm run dev      # 🚀 Servidor de desarrollo con recarga automática
+npm start        # 🏭 Servidor de producción
+
+# Base de datos
+npx prisma generate    # 🔄 Generar cliente Prisma
+npx prisma db push     # 📤 Aplicar cambios al schema
+npx ts-node src/scripts/seedDatabase.ts  # 🌱 Poblar BD con datos de prueba
 ```
 
 ### Frontend
 ```bash
-npm run dev      # Servidor de desarrollo Vite
-npm run build    # Construcción para producción
-npm run preview  # Vista previa de la build
-npm run lint     # Análisis de código con ESLint
-```
-
-🔧 Scripts disponibles
 # Desarrollo
-npm start                   # Iniciar servidor de desarrollo
-npm run dev                 # Alias para desarrollo
+npm run dev      # ⚡ Servidor de desarrollo Vite
+npm start        # 🚀 Alias para desarrollo
 
 # Construcción
-npm run build              # Construir para producción
-npm run build:analyze      # Analizar bundle
+npm run build    # 🏗️ Construir para producción
+npm run preview  # 👀 Vista previa de la build
 
+# Calidad de código
+npm run lint     # 🔍 Análisis de código con ESLint
+npm run format   # ✨ Formatear código con Prettier
+```
+
+### Comandos Útiles
+```bash
 # Testing
-npm test                   # Ejecutar tests
-npm run test:coverage      # Tests con cobertura
-npm run test:watch         # Tests en modo watch
-
-# Linting y formato
-npm run lint              # Verificar código
-npm run lint:fix          # Corregir errores automáticamente
-npm run format            # Formatear código con Prettier
-
-# Base de datos
-npm run migrate           # Ejecutar migraciones
-npm run migrate:rollback  # Revertir migración
-npm run seed              # Poblar base de datos
+npm test                   # 🧪 Ejecutar tests
+npm run test:coverage      # 📊 Tests con cobertura
+npm run test:watch         # 👁️ Tests en modo watch
 
 # Utilidades
-npm run type-check        # Verificar tipos TypeScript
-npm run clean             # Limpiar archivos temporales
+npm run type-check         # 🔬 Verificar tipos TypeScript
+npm run clean              # 🧹 Limpiar archivos temporales
+npm run build:analyze      # 📈 Analizar bundle de producción
+```
+
 ## 🌐 Configuración de Puertos
 
 - **Frontend**: Puerto 5173 (Vite dev server)
