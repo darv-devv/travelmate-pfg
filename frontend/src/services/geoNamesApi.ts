@@ -4,11 +4,11 @@ interface GeoNamesCity {
   name: string;
   countryName: string;
   countryCode: string;
-  adminName1: string; // Estado/Provincia
+  adminName1: string; 
   population: number;
   lat: string;
   lng: string;
-  fcodeName: string; // Tipo de lugar
+  fcodeName: string; 
 }
 
 interface GeoNamesResponse {
@@ -28,7 +28,7 @@ interface Destination {
 }
 
 // Configuración de GeoNames
-const GEONAMES_USERNAME = 'tu_usuario_geonames'; // ¡CAMBIA ESTO!
+const GEONAMES_USERNAME = 'darv-devv'; // 
 const GEONAMES_BASE_URL = 'http://api.geonames.org';
 
 class GeoNamesService {
@@ -99,7 +99,7 @@ class GeoNamesService {
 
   // Obtener destinos populares (predefinidos + API)
   async getPopularDestinations(): Promise<Destination[]> {
-    // Destinos hardcodeados para garantizar que siempre haya contenido
+    // Destinos para garantizar que siempre haya contenido
     const fallbackDestinations: Destination[] = [
       {
         id: 'paris-fr',
@@ -148,7 +148,7 @@ class GeoNamesService {
     ];
 
     try {
-      // Intentar obtener más destinos de la API
+      //  obtener más destinos de la API
       const popularSearches = ['london', 'rome', 'berlin', 'amsterdam'];
       const apiDestinations: Destination[] = [];
 
@@ -159,7 +159,7 @@ class GeoNamesService {
         }
       }
 
-      // Combinar destinos fallback con los de la API
+      // Combinar destinos  con los de la API
       return [...fallbackDestinations, ...apiDestinations];
       
     } catch (error) {
@@ -170,7 +170,7 @@ class GeoNamesService {
   }
 }
 
-// Instancia singleton
+//
 const geoNamesService = new GeoNamesService();
 export default geoNamesService;
 
