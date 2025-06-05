@@ -16,7 +16,14 @@ interface AuthContextType {
   loading: boolean;
 }
 
-const API_BASE_URL = 'http://localhost:5000/api';
+// Usuario demo 
+const DEMO_USER = {
+  id: 'demo-001',
+  name: 'Usuario Demo',
+  email: 'demo@travelmate.com',
+  password: 'demo123'
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -26,27 +33,24 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const register = async (userData: { name: string; email: string; password: string }): Promise<boolean> => {
     try {
       setLoading(true);
-      console.log('🔄 Intentando registro...', userData.email);
+      console.log('🔄 Unos segundos...', userData.email);
       
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData)
-      });
-
-      console.log('📡 Respuesta:', response.status);
-      const data = await response.json();
-      console.log('📦 Datos:', data);
-
-      if (response.ok && data.success) {
-        setUser(data.data.user);
-        localStorage.setItem('travelmate_token', data.data.token);
-        console.log('✅ Registro exitoso');
-        return true;
-      }
-      return false;
+      
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Simular registro exitoso
+      const newUser = {
+        id: `user-${Date.now()}`,
+        name: userData.name,
+        email: userData.email
+      };
+      
+      setUser(newUser);
+      console.log('✅ Registro demo exitoso');
+      return true;
+      
     } catch (error) {
-      console.error('🚨 Error:', error);
+      console.error('🚨 Error registro demo:', error);
       return false;
     } finally {
       setLoading(false);
@@ -56,25 +60,42 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       setLoading(true);
-      console.log('🔄 Intentando login...', email);
+      console.log('🔄 Simulando login...', email);
       
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await response.json();
-      console.log('📦 Login data:', data);
-
-      if (response.ok && data.success) {
-        setUser(data.data.user);
-        localStorage.setItem('travelmate_token', data.data.token);
+      
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      // Verificar credenciales demo
+      if (email === DEMO_USER.email && password === DEMO_USER.password) {
+        const userData = {
+          id: DEMO_USER.id,
+          name: DEMO_USER.name,
+          email: DEMO_USER.email
+        };
+        
+        setUser(userData);
+        console.log('✅ Loginexitoso:', userData);
         return true;
       }
+      
+      //Permitir con cualquiera
+      if (password === 'demo') {
+        const userData = {
+          id: `demo-${Date.now()}`,
+          name: 'Usuario Demo',
+          email: email
+        };
+        
+        setUser(userData);
+        console.log('✅ Login demo exitoso (password demo):', userData);
+        return true;
+      }
+      
+      console.log('❌ Credenciales incorrectas');
       return false;
+      
     } catch (error) {
-      console.error('🚨 Error login:', error);
+      console.error('🚨 Error login demo:', error);
       return false;
     } finally {
       setLoading(false);
@@ -83,7 +104,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('travelmate_token');
+    console.log('👋 Logout ');
   };
 
   const value: AuthContextType = {
