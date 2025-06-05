@@ -206,10 +206,10 @@ const Trips: React.FC = () => {
               ¡Comienza tu aventura!
             </h3>
             <p className="text-gray-600 mb-6">
-              Aún no tienes viajes registrados. Crea tu primer viaje y comienza a planificar.
+              Aún no tienes viajes registrados. Crea tu primer viaje y  comienza a planificar.
             </p>
             <button className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all duration-300 shadow-lg font-medium">
-              Planificar Mi Primer Viaje
+              Planificar Primer Viaje
             </button>
           </div>
         )}
