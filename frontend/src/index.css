@@ -1,4 +1,8 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
+/* CSS existente debajo */
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
