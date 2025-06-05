@@ -8,6 +8,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ===================================
+// USUARIOS
+// ===================================
 model User {
   id        String   @id @default(cuid())
   name      String
@@ -17,15 +20,32 @@ model User {
   bio       String?
   location  String?
   phone     String?
+  birthDate DateTime?
+  
+  // Stats para Dashboard
+  totalTrips       Int @default(0)
+  completedTrips   Int @default(0)
+  plannedTrips     Int @default(0)
+  countriesVisited Int @default(0)
+  
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  
   // Relaciones
-  trips Trip[]
-
+  trips         Trip[]
+  posts         Post[]
+  comments      Comment[]
+  likes         Like[]
+  friendships1  Friendship[] @relation("User1Friendships")
+  friendships2  Friendship[] @relation("User2Friendships")
+  
   @@map("users")
 }
 
+// ===================================
+// DESTINOS
+// ===================================
 model Destination {
   id          String  @id @default(cuid())
   name        String
@@ -35,33 +55,132 @@ model Destination {
   latitude    Float?
   longitude   Float?
   category    String  @default("city")
+  
+  // Para popularidad y valoración
+  rating      Float   @default(0.0)
+  popularity  Int     @default(0)
+  
   createdAt   DateTime @default(now())
-
+  
   // Relaciones
   trips Trip[]
-
+  posts Post[]
+  
   @@map("destinations")
 }
 
+// ===================================
+// VIAJES
+// ===================================
 model Trip {
   id            String     @id @default(cuid())
   title         String
   description   String?
   startDate     DateTime
   endDate       DateTime
-  status        String     @default("PLANNED")
+  status        String     @default("planned") // planned, ongoing, completed
   budget        Float?
   notes         String?
+  
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
-
+  
   // Foreign Keys
   userId        String
   destinationId String
-
+  
   // Relaciones
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   destination   Destination @relation(fields: [destinationId], references: [id])
-
+  
   @@map("trips")
+}
+
+// ===================================
+// FEED SOCIAL
+// ===================================
+model Post {
+  id        String   @id @default(cuid())
+  content   String
+  imageUrl  String?
+  location  String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Foreign Keys
+  userId        String
+  destinationId String?
+  
+  // Relaciones
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  destination Destination? @relation(fields: [destinationId], references: [id])
+  comments    Comment[]
+  likes       Like[]
+  
+  @@map("posts")
+}
+
+// ===================================
+// COMENTARIOS
+// ===================================
+model Comment {
+  id      String @id @default(cuid())
+  content String
+  
+  createdAt DateTime @default(now())
+  
+  // Foreign Keys
+  postId String
+  userId String
+  
+  // Relaciones
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("comments")
+}
+
+// ===================================
+// LIKES
+// ===================================
+model Like {
+  id String @id @default(cuid())
+  
+  createdAt DateTime @default(now())
+  
+  // Foreign Keys
+  postId String
+  userId String
+  
+  // Relaciones
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Un usuario solo puede dar like una vez por post
+  @@unique([postId, userId])
+  @@map("likes")
+}
+
+// ===================================
+// AMISTADES
+// ===================================
+model Friendship {
+  id     String @id @default(cuid())
+  status String @default("pending") // pending, accepted, blocked
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Foreign Keys
+  user1Id String
+  user2Id String
+  
+  // Relaciones
+  user1 User @relation("User1Friendships", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2 User @relation("User2Friendships", fields: [user2Id], references: [id], onDelete: Cascade)
+  
+  // Evitar amistades duplicadas
+  @@unique([user1Id, user2Id])
+  @@map("friendships")
 }
