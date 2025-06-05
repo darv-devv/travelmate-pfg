@@ -11,6 +11,7 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
 
+
     // Validaciones básicas
     if (!name || !email || !password) {
       return res.status(400).json({ 
@@ -76,6 +77,7 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
+    console.log('🔍 Login attempt:', email);
 
     // Validaciones básicas
     if (!email || !password) {
@@ -91,15 +93,18 @@ export const login = async (req: Request, res: Response) => {
     });
 
     if (!user) {
+      console.log('❌ User not found');
       return res.status(401).json({ 
         success: false, 
         message: 'Credenciales inválidas' 
       });
     }
 
+      console.log('✅ User found'); 
+
     // Verificar contraseña
     const isValidPassword = await bcrypt.compare(password, user.password);
-
+    console.log('🔑 Password valid:', isValidPassword);
     if (!isValidPassword) {
       return res.status(401).json({ 
         success: false, 
