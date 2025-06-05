@@ -25,16 +25,16 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-blue-50">
-      {/* Hero Section */}
+    
       <section className="relative pt-16 pb-32 overflow-hidden">
-        {/* Decorative Background */}
+        {/* Fondo */}
         <div className="absolute inset-0 bg-gradient-to-r from-amber-100/20 to-blue-100/20"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-amber-200/30 to-orange-200/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Logo Hero */}
+            {/* Logo */}
             <div className="flex justify-center mb-8">
               <div className="w-24 h-24 bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500 rounded-3xl flex items-center justify-center shadow-2xl border-4 border-white backdrop-blur-sm">
                 <svg className="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Hero Title */}
+            {/* Title */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-yellow-600 bg-clip-text text-transparent">
                 Travel
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
               {" "}tus aventuras como nunca antes.
             </p>
 
-            {/* CTA Buttons */}
+            {/*  Botones */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <button
                 onClick={handleGetStarted}
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features  */}
       <section className="py-20 bg-gradient-to-r from-white via-amber-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -128,7 +128,7 @@ const Home: React.FC = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Planificación Inteligente</h3>
               <p className="text-gray-600 leading-relaxed">
-                Crea itinerarios personalizados con nuestra IA que se adapta a tus preferencias y presupuesto.
+                Crea itinerarios personalizados que se adaptan a tus preferencias y presupuesto.
               </p>
             </div>
 
@@ -213,7 +213,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/*  Section */}
       <section className="py-20 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
