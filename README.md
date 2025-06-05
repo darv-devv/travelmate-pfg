@@ -243,4 +243,6 @@ Este proyecto constituye el trabajo de fin de grado de DAW.
 
 ---
 
+
+
 **Nota**: Este proyecto forma parte del Proyecto Final de Grado en Desarrollo de Aplicaciones Web. La arquitectura y tecnologías seleccionadas reflejan las mejores prácticas actuales en desarrollo fullstack con JavaScript/TypeScript.
