@@ -1,18 +1,20 @@
+
+//login.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../features/auth/AuthContext'; // seañade esta línea
-import { Footer } from '../components/Footer';
+import { useAuth } from '../features/auth/AuthContext'; // esta línea nueva
+//import { Footer } from '../components/Footer';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth(); 
+  //Se elimina useAuth
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleLogin = async (e: React.FormEvent) => { // Hace async
+const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Usa API real en lugar de simulación
     const success = await login(email, password);
     
     if (success) {
@@ -21,7 +23,20 @@ const Login: React.FC = () => {
       alert('Correo o contraseña incorrectos');
     }
   };
+ 
+    //localStorage.setItem('user', email); //Se soluciona problema que provica error en localStorage 
+    //localStorage.setItem('password', password); 
 
+    //const storedEmail = localStorage.getItem('user'); 
+    //const storedPassword = localStorage.getItem('password'); 
+
+    //if (email === storedEmail && password === storedPassword) {
+      //login(email);
+      //navigate('/dashboard');
+    //} else {
+      //alert('Correo o contraseña incorrectos');
+    //}
+  
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-200 flex justify-center items-center px-4">
       <div className="bg-white rounded-xl shadow-xl p-8 w-full max-w-md">
@@ -61,3 +76,5 @@ const Login: React.FC = () => {
   
   );
 };
+
+export default Login;
