@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../features/auth/AuthContext'; // Añadir esta línea
+import { useAuth } from '../features/auth/AuthContext'; // seañade esta línea
 import { Footer } from '../components/Footer';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth(); // Añadir esta línea
+  const { login } = useAuth(); 
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => { // Hacer async
+  const handleLogin = async (e: React.FormEvent) => { // Hace async
     e.preventDefault();
     
-    // Usar API real en lugar de simulación
+    // Usa API real en lugar de simulación
     const success = await login(email, password);
     
     if (success) {
