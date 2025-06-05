@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 // Componente de ruta privada
 interface PrivateRouteProps {
   isAuthenticated: boolean; // Prop para verificar autenticación
-  children: React.ReactNode; // Componente hijo protegido
+  children: React.ReactNode; // Componente protegido
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ isAuthenticated, children }) => {
@@ -14,7 +14,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ isAuthenticated, children }
     return <Navigate to="/login" />;
   }
 
-  // Si el usuario está autenticado, mostramos el componente protegido
+  // Si el usuario está autenticado, mostrar el componente protegido
   return <>{children}</>;
 };
 
