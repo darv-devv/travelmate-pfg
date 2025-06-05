@@ -8,12 +8,12 @@ type AuthContextType = {
   logout: () => void;  // Método para cerrar sesión
 };
 
-// Crear el contexto con el tipo definido
+// Crear el contexto 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Componente proveedor de autenticación
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<string | null>(null); // Estado para almacenar el email del usuario
+  const [user, setUser] = useState<string | null>(null); // Estado para almacenar el email
 
   // Función para iniciar sesión
   const login = (email: string) => {
