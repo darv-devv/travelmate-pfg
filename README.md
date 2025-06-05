@@ -142,6 +142,33 @@ npm run preview  # Vista previa de la build
 npm run lint     # Análisis de código con ESLint
 ```
 
+🔧 Scripts disponibles
+# Desarrollo
+npm start                   # Iniciar servidor de desarrollo
+npm run dev                 # Alias para desarrollo
+
+# Construcción
+npm run build              # Construir para producción
+npm run build:analyze      # Analizar bundle
+
+# Testing
+npm test                   # Ejecutar tests
+npm run test:coverage      # Tests con cobertura
+npm run test:watch         # Tests en modo watch
+
+# Linting y formato
+npm run lint              # Verificar código
+npm run lint:fix          # Corregir errores automáticamente
+npm run format            # Formatear código con Prettier
+
+# Base de datos
+npm run migrate           # Ejecutar migraciones
+npm run migrate:rollback  # Revertir migración
+npm run seed              # Poblar base de datos
+
+# Utilidades
+npm run type-check        # Verificar tipos TypeScript
+npm run clean             # Limpiar archivos temporales
 ## 🌐 Configuración de Puertos
 
 - **Frontend**: Puerto 5173 (Vite dev server)
