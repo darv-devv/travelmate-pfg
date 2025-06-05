@@ -175,6 +175,19 @@ npm run clean             # Limpiar archivos temporales
 - **Backend**: Puerto 5000 (Express server)
 - **Base de Datos**: SQLite local (dev.db)
 
+🌐 Variables de entorno
+Frontend (.env)
+REACT_APP_API_URL=http://localhost:3001/api
+REACT_APP_MAPS_API_KEY=tu_google_maps_key
+REACT_APP_ENV=development
+
+Backend (.env.server)
+PORT=3001
+NODE_ENV=development
+DATABASE_URL=mysql://user@travelmate.com:password@localhost:3306/travelmate_db
+JWT_SECRET=travelmate
+CORS_ORIGIN=http://localhost:3000
+
 ## 📱 Funcionalidades Implementadas
 
 ### Sistema de Autenticación
