@@ -97,7 +97,16 @@ const destinations = [
   }
 ];
 
+// Usuario demo principal y usuarios de ejemplo
 const sampleUsers = [
+  {
+    name: 'Demo User',
+    email: 'demo@travelmate.com',
+    password: 'demo123',
+    bio: 'Usuario de demostración para TravelMate',
+    location: 'Madrid, España',
+    phone: '+34 123 456 789'
+  },
   {
     name: 'Ana García',
     email: 'ana@example.com',
@@ -121,6 +130,10 @@ async function seedDatabase() {
 
     // Limpiar datos existentes
     console.log('🧹 Limpiando datos existentes...');
+    await prisma.like.deleteMany();
+    await prisma.comment.deleteMany();
+    await prisma.post.deleteMany();
+    await prisma.friendship.deleteMany();
     await prisma.trip.deleteMany();
     await prisma.destination.deleteMany();
     await prisma.user.deleteMany();
@@ -134,76 +147,107 @@ async function seedDatabase() {
     );
     console.log(`✅ ${createdDestinations.length} destinos creados`);
 
-    // Crear usuarios de ejemplo
-    console.log('👥 Creando usuarios de ejemplo...');
+    // Crear usuarios (incluyend el demo)
+    console.log('👥 Creando usuarios...');
     const createdUsers = await Promise.all(
       sampleUsers.map(async user => {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         return prisma.user.create({
           data: {
-            ...user,
-            password: hashedPassword
+            name: user.name,
+            email: user.email,
+            password: hashedPassword,
+            bio: user.bio || null,
+            location: user.location || null,
+            phone: user.phone || null
           }
         });
       })
     );
     console.log(`✅ ${createdUsers.length} usuarios creados`);
 
-    // Crear algunos viajes de ejemplo
+    // Encontrar el usuario demo para crear sus viajes
+    const demoUser = createdUsers.find(user => user.email === 'demo@travelmate.com');
+
+   
     console.log('✈️ Creando viajes de ejemplo...');
     const sampleTrips = [
+      // Viaje del usuario demo
       {
-        title: 'Escapada romántica a París',
-        description: 'Una semana perfecta recorriendo los lugares más románticos de la ciudad del amor.',
-        userId: createdUsers[0].id,
+        title: 'Mi primer viaje a París',
+        description: 'Una semana perfecta descubriendo la ciudad del amor con TravelMate.',
+        userId: demoUser!.id,
         destinationId: createdDestinations[0].id, // París
         startDate: new Date('2024-08-15'),
         endDate: new Date('2024-08-22'),
-        status: 'COMPLETED',
+        status: 'completed',
+        budget: 2500.00,
+        notes: 'Experiencia increíble usando TravelMate para planificar todo'
+      },
+      {
+        title: 'Próxima aventura en Tokio',
+        description: 'Planeando mi viaje soñado a Japón para conocer su cultura.',
+        userId: demoUser!.id,
+        destinationId: createdDestinations[2].id, // Tokio
+        startDate: new Date('2025-03-10'),
+        endDate: new Date('2025-03-20'),
+        status: 'planned',
+        budget: 4000.00,
+        notes: 'Quiero probar el sushi auténtico y visitar templos tradicionales'
+      },
+      // Otros 
+      {
+        title: 'Escapada romántica a París',
+        description: 'Una semana perfecta recorriendo los lugares más románticos de la ciudad del amor.',
+        userId: createdUsers[1].id,
+        destinationId: createdDestinations[0].id, // París
+        startDate: new Date('2024-08-15'),
+        endDate: new Date('2024-08-22'),
+        status: 'completed',
         budget: 2500.00,
         notes: 'No olvidar visitar la Torre Eiffel al atardecer'
       },
       {
         title: 'Aventura en Nueva York',
         description: 'Explorando la Gran Manzana: Broadway, Central Park y rascacielos.',
-        userId: createdUsers[0].id,
+        userId: createdUsers[1].id,
         destinationId: createdDestinations[1].id, // Nueva York
         startDate: new Date('2024-12-10'),
         endDate: new Date('2024-12-17'),
-        status: 'PLANNED',
+        status: 'planned',
         budget: 3200.00,
         notes: 'Reservar entradas para Broadway con anticipación'
       },
       {
         title: 'Cultura japonesa en Tokio',
         description: 'Inmersión cultural en la capital japonesa: templos, sushi y tecnología.',
-        userId: createdUsers[1].id,
+        userId: createdUsers[2].id,
         destinationId: createdDestinations[2].id, // Tokio
         startDate: new Date('2024-10-05'),
         endDate: new Date('2024-10-15'),
-        status: 'ONGOING',
+        status: 'ongoing',
         budget: 4000.00,
         notes: 'Aprender algunas frases básicas en japonés'
       },
       {
         title: 'Arte y arquitectura en Barcelona',
         description: 'Descubriendo las obras de Gaudí y la cultura catalana.',
-        userId: createdUsers[2].id,
+        userId: createdUsers[3].id,
         destinationId: createdDestinations[3].id, // Barcelona
         startDate: new Date('2024-09-20'),
         endDate: new Date('2024-09-27'),
-        status: 'COMPLETED',
+        status: 'completed',
         budget: 1800.00,
         notes: 'Visita obligatoria a la Sagrada Familia'
       },
       {
         title: 'Relax tropical en Bali',
         description: 'Retiro espiritual en templos y playas paradisíacas.',
-        userId: createdUsers[1].id,
+        userId: createdUsers[2].id,
         destinationId: createdDestinations[6].id, // Bali
         startDate: new Date('2025-01-10'),
         endDate: new Date('2025-01-20'),
-        status: 'PLANNED',
+        status: 'planned',
         budget: 2800.00,
         notes: 'Llevar ropa cómoda para yoga y meditación'
       }
@@ -216,17 +260,205 @@ async function seedDatabase() {
     );
     console.log(`✅ ${createdTrips.length} viajes creados`);
 
+    // ============================================
+    // SEED SOCIAL MEDIA DATA
+    // ============================================
+    console.log('📱 Creando usuarios para social media...');
+    
+    // Crear usuarios sociales (usando el schema correcto)
+    const socialUsers = [
+      {
+        name: 'Alex Rodriguez',
+        email: 'alex@social.com',
+        password: await bcrypt.hash('password123', 10),
+        bio: 'Full-stack developer 💻 | Coffee addict ☕',
+        location: 'Madrid, España',
+        totalTrips: 12,
+        completedTrips: 8,
+        plannedTrips: 4,
+        countriesVisited: 6
+      },
+      {
+        name: 'Sarah Johnson', 
+        email: 'sarah@social.com',
+        password: await bcrypt.hash('password123', 10),
+        bio: 'UI/UX Designer 🎨 | Digital nomad 🌎',
+        location: 'Barcelona, España',
+        totalTrips: 15,
+        completedTrips: 12,
+        plannedTrips: 3,
+        countriesVisited: 8
+      },
+      {
+        name: 'Mike Chen',
+        email: 'mike@social.com', 
+        password: await bcrypt.hash('password123', 10),
+        bio: 'Photographer 📸 | Travel enthusiast ✈️',
+        location: 'Valencia, España',
+        totalTrips: 20,
+        completedTrips: 18,
+        plannedTrips: 2,
+        countriesVisited: 12
+      }
+    ];
+
+    const createdSocialUsers = await Promise.all(
+      socialUsers.map(user => 
+        prisma.user.create({ data: user })
+      )
+    );
+    console.log(`✅ ${createdSocialUsers.length} usuarios sociales creados`);
+
+    // Crear posts (usando el schema correcto)
+    console.log('📝 Creando posts...');
+    const posts = [
+      {
+        userId: createdSocialUsers[0].id,
+        content: '🚀 Just shipped a new feature! The feeling when everything works on the first try is unmatched. #coding #webdev',
+        imageUrl: 'https://picsum.photos/600/400?random=1',
+        location: 'Madrid, España'
+      },
+      {
+        userId: createdSocialUsers[1].id,
+        content: '✨ New UI design for a fintech app. Clean, minimal, and user-friendly. What do you think?',
+        imageUrl: 'https://picsum.photos/600/400?random=3',
+        location: 'Barcelona, España'
+      },
+      {
+        userId: createdSocialUsers[2].id,
+        content: '📸 Golden hour in Valencia. Sometimes the best shots are the unexpected ones.',
+        imageUrl: 'https://picsum.photos/600/400?random=5',
+        location: 'Valencia, España',
+        destinationId: createdDestinations[3].id // Barcelona como destino relacionado
+      },
+      {
+        userId: createdSocialUsers[0].id,
+        content: 'Working on a new React component library. Open source coming soon! 💻✨'
+      },
+      {
+        userId: createdSocialUsers[1].id,
+        content: 'Color theory is everything in design. Here is why I chose this palette 🎨',
+        imageUrl: 'https://picsum.photos/600/400?random=4'
+      },
+      {
+        userId: createdSocialUsers[2].id,
+        content: '🌍 Just got back from Paris! The Eiffel Tower at sunset was magical ✨',
+        imageUrl: 'https://picsum.photos/600/400?random=6',
+        destinationId: createdDestinations[0].id // París
+      }
+    ];
+
+    const createdPosts = await Promise.all(
+      posts.map(post => 
+        prisma.post.create({ data: post })
+      )
+    );
+    console.log(`✅ ${createdPosts.length} posts creados`);
+
+    // Crear amistades (usando Friendship en lugar de followers)
+    console.log('👥 Creando amistades...');
+    const friendships = [
+      { 
+        user1Id: createdSocialUsers[0].id, 
+        user2Id: createdSocialUsers[1].id,
+        status: 'accepted'
+      },
+      { 
+        user1Id: createdSocialUsers[0].id, 
+        user2Id: createdSocialUsers[2].id,
+        status: 'accepted'
+      },
+      { 
+        user1Id: createdSocialUsers[1].id, 
+        user2Id: createdSocialUsers[2].id,
+        status: 'accepted'
+      }
+    ];
+
+    const createdFriendships = await Promise.all(
+      friendships.map(friendship => 
+        prisma.friendship.create({ data: friendship })
+      )
+    );
+    console.log(`✅ ${createdFriendships.length} amistades creadas`);
+
+    // Crear comentarios
+    console.log('💬 Creando comentarios...');
+    const comments = [
+      {
+        postId: createdPosts[0].id,
+        userId: createdSocialUsers[1].id,
+        content: 'Congrats! What framework did you use?'
+      },
+      {
+        postId: createdPosts[1].id,
+        userId: createdSocialUsers[0].id,
+        content: 'Clean design! The color scheme is perfect 👌'
+      },
+      {
+        postId: createdPosts[2].id,
+        userId: createdSocialUsers[1].id,
+        content: 'Stunning shot! The composition is perfect 📸'
+      },
+      {
+        postId: createdPosts[5].id,
+        userId: createdSocialUsers[0].id,
+        content: 'Paris is amazing! I want to go back 🇫🇷'
+      }
+    ];
+
+    const createdComments = await Promise.all(
+      comments.map(comment => 
+        prisma.comment.create({ data: comment })
+      )
+    );
+    console.log(`✅ ${createdComments.length} comentarios creados`);
+
+    // Crear likes
+    console.log('❤️ Creando likes...');
+    const likes = [
+      { postId: createdPosts[0].id, userId: createdSocialUsers[1].id },
+      { postId: createdPosts[0].id, userId: createdSocialUsers[2].id },
+      { postId: createdPosts[1].id, userId: createdSocialUsers[0].id },
+      { postId: createdPosts[1].id, userId: createdSocialUsers[2].id },
+      { postId: createdPosts[2].id, userId: createdSocialUsers[0].id },
+      { postId: createdPosts[2].id, userId: createdSocialUsers[1].id },
+      { postId: createdPosts[5].id, userId: createdSocialUsers[0].id },
+      { postId: createdPosts[5].id, userId: createdSocialUsers[1].id }
+    ];
+
+    const createdLikes = await Promise.all(
+      likes.map(like => 
+        prisma.like.create({ data: like })
+      )
+    );
+    console.log(`✅ ${createdLikes.length} likes creados`);
+
     console.log('🎉 Seed completado exitosamente!');
     console.log(`
 📊 Resumen:
    - ${createdDestinations.length} destinos
-   - ${createdUsers.length} usuarios
+   - ${createdUsers.length + createdSocialUsers.length} usuarios totales
    - ${createdTrips.length} viajes
+   - ${createdPosts.length} posts
+   - ${createdFriendships.length} amistades
+   - ${createdComments.length} comentarios
+   - ${createdLikes.length} likes
 
-👤 Usuarios de prueba:
+👤 Usuario DEMO:
+   - demo@travelmate.com / demo123
+
+👤 Usuarios sociales:
+   - alex@social.com / password123
+   - sarah@social.com / password123
+   - mike@social.com / password123
+
+👤 Otros usuarios de prueba:
    - ana@example.com / password123
    - carlos@example.com / password123
    - maria@example.com / password123
+
+🎯 El usuario demo tiene ${createdTrips.filter(trip => trip.userId === demoUser!.id).length} viajes de ejemplo.
     `);
 
   } catch (error) {
